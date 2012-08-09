@@ -28,7 +28,7 @@
                         loadData: null,
                         maxItems: 25,
                         selection: false,
-                        searchModes: {"": "=", "!": "≠", "|": "∈", ">": "≥", "<": "≤", "~": "≈", "*": "∼"}
+                        searchModes: {"*": "≈", "": "=", "!": "≠", "|": "∈", ">": "≥", "<": "≤"}
                         }, options)
                     
                     $(this).data("dataTable", { dataTable: new DataTable($this, options) });
