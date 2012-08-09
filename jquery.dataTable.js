@@ -26,7 +26,7 @@
                         defaultSort: "",
                         defaultFilter: "",
                         loadData: null,
-                        maxItems: 50,
+                        maxItems: 25,
                         selection: false,
                         searchModes: {"": "=", "!": "≠", "|": "∈", ">": "≥", "<": "≤", "~": "≈", "*": "∼"}
                         }, options)
@@ -175,13 +175,7 @@
         {
             var query = buildQuery()
             
-            //Steam.retrieve(options.model, query, function(xhr, status)
-            $.ajax(Steam.base_uri + "actions/retrieveData?model=" + options.model, {
-                type: "POST",
-                processData: true,
-                data: query,
-                dataType: "json",
-                complete: function(xhr, status)
+            Steam.retrieve(options.model, query, function(xhr, status)
             {
                 if (typeof callback == "function") return callback(xhr)
                 
@@ -246,7 +240,7 @@
                 })
                 
                 if (typeof options.loadData == "function") options.loadData(input)
-            }})
+            })
         }
         
         var makeSearch = function()
@@ -320,9 +314,8 @@
             
             $(document.createElement("option")).attr("value", options.maxItems     ).text(options.maxItems      + " Results").appendTo(query_lim)
             $(document.createElement("option")).attr("value", options.maxItems *  2).text(options.maxItems *  2 + " Results").appendTo(query_lim)
+            $(document.createElement("option")).attr("value", options.maxItems *  4).text(options.maxItems *  4 + " Results").appendTo(query_lim)
             $(document.createElement("option")).attr("value", options.maxItems * 10).text(options.maxItems * 10 + " Results").appendTo(query_lim)
-            $(document.createElement("option")).attr("value", options.maxItems * 20).text(options.maxItems * 20 + " Results").appendTo(query_lim)
-            $(document.createElement("option")).attr("value", options.maxItems * 40).text(options.maxItems * 40 + " Results").appendTo(query_lim)
             
             if (options.filters)
             {
